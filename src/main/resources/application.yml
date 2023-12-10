@@ -7,6 +7,24 @@ spring:
   jpa:
     open-in-view: false
     generate-ddl: true
-    show-sql: true
     hibernate:
       ddl-auto: update
+  upload:
+    path: C:\dev\upload
+decorator:
+  datasource:
+    p6spy:
+      multiline: true
+      enable-logging: true
+
+springdoc:
+  swagger-ui:
+    path: /swagger-ui
+#    enabled: true
+    doc-expansion: list
+    default-model-expand-depth: 2
+    operations-sorter: alpha
+  default-consumes-media-type: application/json
+  default-produces-media-type: application/json
+  paths-to-match:
+    - /**
