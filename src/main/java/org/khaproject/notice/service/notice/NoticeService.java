@@ -46,7 +46,7 @@ public class NoticeService {
      */
     public GetNoticeRes getNoticeDetail(GetNoticeReq param) {
         // 조회수 조회
-        Long viewCnt = noticeRepository.findById(param.getNtceIdx()).get().getViewCnt();
+        Long viewCnt = noticeRepository.findById(param.getNtceIdx()).orElseThrow(() -> new IllegalArgumentException("해당 공지사항이 없습니다.")).getViewCnt();
         // 조회수 증가
         noticeRepository.updateViewCount(param.getNtceIdx(), viewCnt);
 
