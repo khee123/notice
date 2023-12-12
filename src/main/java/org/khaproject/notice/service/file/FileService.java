@@ -49,16 +49,16 @@ public class FileService {
                 throw new RuntimeException(e);
             }
 
-            File saveFile = new File();
-            saveFile.setFileNm(fileNm);
-            saveFile.setOrgnFileNm(file.getOriginalFilename());
-            saveFile.setFileSize(file.getSize());
-            saveFile.setFilePath(uploadPath);
-            saveFile.setTempYn("Y");
-            saveFile.setDelYn("N");
-            saveFile.setRegUser(NoticeApplication.userId);
-
-            File saveInfo = fileRepository.save(saveFile);
+            File saveInfo = fileRepository.save(File.builder()
+                    .fileNm(fileNm)
+                    .orgnFileNm(file.getOriginalFilename())
+                    .fileSize(file.getSize())
+                    .filePath(uploadPath)
+                    .tempYn("Y")
+                    .delYn("N")
+                    .regUser(NoticeApplication.userId)
+                    .build()
+            );
 
             fileList.add(new UploadFileRes(saveInfo));
         }

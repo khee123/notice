@@ -1,9 +1,9 @@
 package org.khaproject.notice.repository.notice;
 
 import org.khaproject.notice.model.dto.NoticeDto;
+import org.khaproject.notice.model.entity.Notice;
+import org.springframework.data.jpa.repository.Query;
 
 public interface NoticeRepositoryCustom {
-    Long updateViewCount(Long ntceIdx, Long viewCnt);
-
     NoticeDto selectNoticeDetail(Long ntceIdx);
 }

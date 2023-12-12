@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @Slf4j
-@RequestMapping("notice")
+@RequestMapping("rproject")
 @RequiredArgsConstructor
 @RestController
 public class NoticeController {
@@ -31,7 +31,6 @@ public class NoticeController {
         return new ApiRes<> (noticeService.updateNotice(param));
     }
 
-    // 공지사항 조회
     @Operation(operationId = "get-notice-detail", tags = {"notice"}
             , summary = "공지사항 조회"
             , description = "공지사항을 조회한다."
@@ -41,7 +40,6 @@ public class NoticeController {
         return new ApiRes<> (noticeService.getNoticeDetail(param));
     }
 
-    // 공지사항 삭제
     @Operation(operationId = "delete-notice", tags = {"notice"}
             , summary = "공지사항 삭제"
             , description = "공지사항을 삭제한다."

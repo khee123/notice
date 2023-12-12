@@ -1,10 +1,7 @@
 package org.khaproject.notice.model.entity;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import org.hibernate.annotations.*;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
@@ -18,7 +15,8 @@ import java.time.LocalDateTime;
 @Entity
 @Table(name = "tbl_ntce")
 @Getter
-@Setter
+@Builder
+@AllArgsConstructor
 @NoArgsConstructor
 @EntityListeners(AuditingEntityListener.class)
 public class Notice {
@@ -42,6 +40,10 @@ public class Notice {
     @ColumnDefault("0")
     @Comment("조회수")
     private Long viewCnt;
+    @Column(columnDefinition = "char(1)", nullable = false, updatable = false)
+    @ColumnDefault("'N'")
+    @Comment("삭제_여부(Y,N)")
+    private String delYn;
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "Asia/Seoul")
     @CreatedDate
     @Column(nullable = false, updatable = false)
@@ -61,14 +63,14 @@ public class Notice {
     @Comment("수정_자")
     private String modUser;
 
-    @Builder
-    public Notice(Long ntceIdx, String ntceNm, String ntceConts, LocalDateTime srtDt, LocalDateTime endDt, LocalDateTime modDt, String modUser) {
-        this.ntceIdx = ntceIdx;
-        this.ntceNm = ntceNm;
-        this.ntceConts = ntceConts;
-        this.srtDt = srtDt;
-        this.endDt = endDt;
-        this.modDt = modDt;
-        this.modUser = modUser;
-    }
+//    @Builder
+//    public Notice(Long ntceIdx, String ntceNm, String ntceConts, LocalDateTime srtDt, LocalDateTime endDt, LocalDateTime modDt, String modUser) {
+//        this.ntceIdx = ntceIdx;
+//        this.ntceNm = ntceNm;
+//        this.ntceConts = ntceConts;
+//        this.srtDt = srtDt;
+//        this.endDt = endDt;
+//        this.modDt = modDt;
+//        this.modUser = modUser;
+//    }
 }

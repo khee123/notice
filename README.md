@@ -20,4 +20,4 @@ pom.xml 우클릭 > Maven > Generate Sources and Update Folders
 ````
 ### 3. 첨부파일 업로드 경로는 application.yml > spring.upload.path
 ### 4. application 실행 시 로컬 데이터베이스에 테이블 및 사용자 데이터 생성 됨.
-### 5. swagger 주소: http://localhost:8080/swagger-ui/index.htm
+### 5. swagger 주소: http://localhost:8080/swagger-ui

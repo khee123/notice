@@ -14,15 +14,6 @@ import static org.khaproject.notice.model.entity.QUser.user;
 public class NoticeRepositoryCustomImpl implements NoticeRepositoryCustom {
     private final JPAQueryFactory query;
 
-    @Transactional
-    @Override
-    public Long updateViewCount(Long ntceIdx, Long viewCnt) {
-        return query.update(notice)
-                .set(notice.viewCnt, viewCnt+1)
-                .where(notice.ntceIdx.eq(ntceIdx))
-                .execute();
-    }
-
     @Override
     public NoticeDto selectNoticeDetail(Long ntceIdx) {
         return query.select(Projections.fields(
@@ -35,7 +26,9 @@ public class NoticeRepositoryCustomImpl implements NoticeRepositoryCustom {
         ))
         .from(notice)
         .innerJoin(user).on(notice.regUser.eq(user.userId))
-        .where(notice.ntceIdx.eq(ntceIdx))
+        .where(notice.ntceIdx.eq(ntceIdx)
+                .and(notice.delYn.eq("N")))
         .fetchOne();
     }
+
 }

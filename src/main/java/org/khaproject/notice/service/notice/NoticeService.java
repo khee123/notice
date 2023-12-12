@@ -27,16 +27,18 @@ public class NoticeService {
      */
     @Transactional
     public ResultCodeEnums updateNotice(UpdateNoticeReq param) {
+        param.setModUser(NoticeApplication.userId);
+        param.setRegUser(NoticeApplication.userId);
         Notice noticeInfo = param.toEntity();
-        noticeInfo.setModUser(NoticeApplication.userId);
-        noticeInfo.setRegUser(NoticeApplication.userId);
 
         // 공지사항 등록/수정
         Notice noticeDetail = noticeRepository.save(noticeInfo);
 
         // 첨부파일 등록
-        fileRepository.deleteFile("menu_ntce", noticeDetail.getNtceIdx());
-        fileRepository.updateFile("menu_ntce", noticeDetail.getNtceIdx(), param.getFileIdxList());
+        if(param.getFileIdxList() != null && !param.getFileIdxList().isEmpty()) {
+            fileRepository.deleteFile("menu_ntce", noticeDetail.getNtceIdx());
+            fileRepository.updateFile("menu_ntce", noticeDetail.getNtceIdx(), param.getFileIdxList());
+        }
 
         return ResultCodeEnums.SUCCESS;
     }
@@ -48,7 +50,7 @@ public class NoticeService {
         // 조회수 조회
         Long viewCnt = noticeRepository.findById(param.getNtceIdx()).orElseThrow(() -> new IllegalArgumentException("해당 공지사항이 없습니다.")).getViewCnt();
         // 조회수 증가
-        noticeRepository.updateViewCount(param.getNtceIdx(), viewCnt);
+        noticeRepository.updateViewCount(param.getNtceIdx(), viewCnt+1);
 
         // 공지사항 조회
         NoticeDto noticeDetail = noticeRepository.selectNoticeDetail(param.getNtceIdx());
