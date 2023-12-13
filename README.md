@@ -33,7 +33,7 @@
 
 - ### 대용량 트래픽(transaction)
 
-    - 대용량 트래픽 해결 관련하여 깊이 있게 학습하여 개발 한 경험이 부족하여 정보를 찾아보며 작업 진행
+    - 대용량 트래픽 해결 관련gks 개발 경험이 부족하여 정보를 찾아보며 작업 진행
     - JPA를 활용하여 작업할 경우, 가장 중요한 부분이 transaction 처리라고 생각 되어 save 메소드 사용 시 transactional 처리 진행
     - save() 메소드 내부에 transaction이 존재 하기 때문에 save() 메소드만 호출할 경우 호출 할 때마다 transaction이 실행 되어 속도 저하 발생
     - 이를 해결하기 위해 save()메소드를 사용하는 상위 Service 구현부에 Transactional 어노테이션을 추가함.
