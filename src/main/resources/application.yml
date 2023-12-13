@@ -1,18 +1,12 @@
+# default
 spring:
   profiles:
     active: local
-  datasource:
-    url: jdbc:postgresql://localhost:5432/rproject
-    driver: org.postgresql.Driver
-    username: rsupport
-    password: rsupport
   jpa:
     open-in-view: false
     generate-ddl: true
     hibernate:
       ddl-auto: update
-  upload:
-    path: C:\dev\upload
   servlet:
     multipart:
       max-file-size: 100MB
@@ -35,10 +29,23 @@ springdoc:
     - /rproject/**
 
 ---
-
 spring:
-  profiles:
-    active: test
+  config:
+    activate:
+      on-profile: local
+  datasource:
+    url: jdbc:postgresql://localhost:5432/rproject
+    driver: org.postgresql.Driver
+    username: rsupport
+    password: rsupport
+  upload:
+    path: C:\dev\upload
+
+---
+spring:
+  config:
+    activate:
+      on-profile: test
   datasource:
     url: jdbc:postgresql://localhost:5432/test
     driver: org.postgresql.Driver
