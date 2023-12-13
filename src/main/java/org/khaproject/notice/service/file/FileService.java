@@ -9,6 +9,7 @@ import org.khaproject.notice.model.web.common.response.UploadFileRes;
 import org.khaproject.notice.repository.file.FileRepository;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
@@ -30,6 +31,7 @@ public class FileService {
     /**
      * 파일 업로드
      */
+    @Transactional
     public List<UploadFileRes> uploadFile(List<MultipartFile> files) {
         List<UploadFileRes> fileList = new ArrayList<>();
 

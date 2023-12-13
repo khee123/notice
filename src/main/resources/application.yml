@@ -35,9 +35,9 @@ spring:
       on-profile: local
   datasource:
     url: jdbc:postgresql://localhost:5432/rproject
-    driver: org.postgresql.Driver
     username: rsupport
     password: rsupport
+    driver-class-name: org.postgresql.Driver
   upload:
     path: C:\dev\upload
 
@@ -48,7 +48,7 @@ spring:
       on-profile: test
   datasource:
     url: jdbc:postgresql://localhost:5432/test
-    driver: org.postgresql.Driver
+    driver-class-name: org.postgresql.Driver
     username: rsupport
     password: rsupport
   jpa:
