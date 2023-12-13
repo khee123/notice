@@ -45,8 +45,14 @@
 ## 3. 실행 방법
 ### 1. jdk-11, postgresql 사용
 ### 2. database 정보
+
+- ### local 환경에 데이터 베이스 생성 작업 필요(test용 db와 실제 사용 db 분리)
+````    
+    사용 database명: rproject
+    test database명: test
     username: rsupport
     password: rsupport
-### 2. 첨부파일 업로드 경로는 application.yml > spring.upload.path
-### 3. application 실행 시 로컬 데이터베이스에 테이블 및 사용자 기본 데이터 생성 됨.
-### 4. swagger 주소: http://localhost:8080/swagger-ui
+````
+### 3. 첨부파일 업로드 경로는 application.yml > spring.upload.path
+### 4. application 실행 시 로컬 데이터베이스에 테이블 및 사용자 기본 데이터 생성 됨.
+### 5. swagger 주소: http://localhost:8080/swagger-ui
